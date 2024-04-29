@@ -30,7 +30,7 @@ module.exports = async (env, options) => {
       clean: true,
     },
     resolve: {
-      extensions: [".ts", ".html", ".js"],
+      extensions: [".ts", ".tsx", ".html", ".js"],
     },
     module: {
       rules: [
@@ -43,6 +43,11 @@ module.exports = async (env, options) => {
               presets: ["@babel/preset-typescript"],
             },
           },
+        },
+        {
+          test: /\.tsx?$/,
+          exclude: /node_modules/,
+          use: "ts-loader",
         },
         {
           test: /\.html$/,
@@ -81,7 +86,7 @@ module.exports = async (env, options) => {
               if (dev) {
                 return content;
               } else {
-                return content.toString().replace(urlDev, urlProd);
+                return content.toString().replace(new RegExp(urlDev + "(?:public/)?", "g"), urlProd);
               }
             },
           },
@@ -89,6 +94,10 @@ module.exports = async (env, options) => {
       }),
     ],
     devServer: {
+      static: {
+        directory: path.join(__dirname, "dist"),
+        publicPath: "/public",
+      },
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
