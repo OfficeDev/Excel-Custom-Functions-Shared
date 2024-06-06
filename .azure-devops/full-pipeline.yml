@@ -8,7 +8,7 @@ extends:
   template: v1/M365.Unofficial.PipelineTemplate.yml@m365Pipelines
   parameters:
     pool:
-      name: Azure-Pipelines-1ESPT-ExDShared
+      name: OE-OfficeClientApps
       image: windows-2022
       os: windows
     customBuildTags:
