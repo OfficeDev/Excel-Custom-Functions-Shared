@@ -9,8 +9,6 @@ extends:
   parameters:
     pool:
       name: OE-OfficeClientApps
-      image: windows-2022
-      os: windows
     customBuildTags:
     - ES365AIMigrationTooling
     stages:
