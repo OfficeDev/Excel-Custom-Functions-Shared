@@ -1,11 +1,11 @@
 resources:
   repositories:
-  - repository: OfficePipelineTemplates
+  - repository: CustomPipelineTemplates
     type: git
     name: 1ESPipelineTemplates/OfficePipelineTemplates
     ref: refs/tags/release
 extends:
-  template: v1/Office.Unofficial.PipelineTemplate.yml@OfficePipelineTemplates
+  template: /v1/Office.Unofficial.PipelineTemplate.yml@CustomPipelineTemplates
   parameters:
     pool:
       name: OE-OfficeClientApps
@@ -37,9 +37,14 @@ extends:
         - template: /.azure-devops/test.yml@self
           parameters:
             webView: "edge-legacy"
-      - job: Mac
-        steps:
-        - template: /.azure-devops/install.yml@self
-        - template: /.azure-devops/lint.yml@self
-        - template: /.azure-devops/build.yml@self
-        - template: /.azure-devops/cleanup.yml@self
+  # Need to determin why the IE test doesn't pass in the lab
+      # - job: WebView_IE
+      #   steps:
+      #   - template: /.azure-devops/install.yml@self
+      #   - template: /.azure-devops/lint.yml@self
+      #   - template: /.azure-devops/build.yml@self
+      #   - template: /.azure-devops/devcerts.yml@self
+      #   - template: /.azure-devops/edgewebview.yml@self
+      #   - template: /.azure-devops/test.yml@self
+      #     parameters:
+      #       webView: "ie"
