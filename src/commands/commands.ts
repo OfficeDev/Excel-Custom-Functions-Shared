@@ -22,7 +22,7 @@ function action(event: Office.AddinCommands.Event) {
   };
 
   // Show a notification message.
-  Office.context.mailbox.item.notificationMessages.replaceAsync(
+  Office.context.mailbox.item?.notificationMessages.replaceAsync(
     "ActionPerformanceNotification",
     message
   );

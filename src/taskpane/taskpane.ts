@@ -7,14 +7,14 @@
 
 // The initialize function must be run each time a new page is loaded
 Office.onReady(() => {
-  document.getElementById("sideload-msg").style.display = "none";
-  document.getElementById("app-body").style.display = "flex";
-  document.getElementById("run").onclick = run;
+  document.getElementById("sideload-msg")!.style.display = "none";
+  document.getElementById("app-body")!.style.display = "flex";
+  document.getElementById("run")!.onclick = run;
 });
 
 export async function run() {
   try {
-    await Excel.run(async (context) => {
+    await Excel.run(async (context: Excel.RequestContext) => {
       /**
        * Insert your Excel code here
        */
